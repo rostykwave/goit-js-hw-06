@@ -1,63 +1,91 @@
-const CounterPlugin = function ({
-    rootSelector,
-    initialValue = 0, step = 1 } = {}) {
-    // this.rootSelector = rootSelector;
-    this._value = initialValue;
-    this._step = step;
+class Hero{
+    constructor({name = 'hero', xp = 0} = {}) {
+        this.name = name;
+        this.xp = xp;
+    }
 
-    this._refs = this._getRefs(rootSelector);
+    gainXp(amount) {
+        console.log(`${this.name} отримує ${amount} досвіду`);
+        this.xp += amount;
+    }
+}
 
-    this._bindEvents();
+class Warrior extends Hero{
+    constructor({weapon, ...restProps} = {}) {
+        super(restProps);
 
-    this.updateValueUI();
+        this.weapon = weapon;
+    }
+
+    atack() {
+        console.log(`${this.name} атакує, використовуючи ${this.weapon}!`);
+    }
+}
+
+
+////Berser
+class Berserk extends Warrior{
+    constructor({warcry, ...restProps} = {}) {
+        super(restProps);
+
+        this.warcry = warcry;
+    }
 };
 
-CounterPlugin.prototype._getRefs = function (rootSelector) {
-   
-    const refs = {};
-    refs.container = document.querySelector(rootSelector);
-    refs.incrementBtn = refs.container.querySelector('[data-increment]');
-    refs.decrementBtn = refs.container.querySelector('[data-decrement]');
-    refs.value = refs.container.querySelector('[data-value]');
 
 
-    return refs;
-}
+////Mage
+class Mage extends Hero{
+    // constructor({name, xp, spells = []} = {}) {
+    constructor({spells, ...restProps} = {}) {
+        // super(name, xp);
+        super(restProps);
+        
+        this.spells = spells;
+    }
 
-CounterPlugin.prototype._bindEvents = function () {
-    this._refs.incrementBtn.addEventListener('click', () => {
-        console.log(this);
-        this.increment();
-        this.updateValueUI();
-    });
+    casst() {
+        console.log(`${this.name} щось сповіщає`);
+    }
 
-    this._refs.decrementBtn.addEventListener('click', () => {
-         console.log(this);
-        this.decrement();
-        this.updateValueUI();
-    });
-}
-
-CounterPlugin.prototype.updateValueUI = function () {
-    this._refs.value.textContent = this._value;
- };
-
-CounterPlugin.prototype.increment = function () {
-    this._value += this._step;
-}
-
-CounterPlugin.prototype.decrement = function () {
-    this._value -= this._step;
-}
+};
 
 
-// const counter1 = new CounterPlugin({rootSelector:'#counter-1', step: 7});
+////// Mango
+const mango = new Warrior({name: 'Манго', xp: 1000, weapon: 'Джавелін'})
 
-// console.log('counter1', counter1);
+console.log(mango);
 
-// const counter2 = new CounterPlugin({rootSelector:'#counter-2', step: 13});
+mango.atack();
 
-// console.log('counter2', counter2);
+mango.gainXp(1000);
 
-new CounterPlugin({ rootSelector: '#counter-1',initialValue: 200, step: 7 });
-new CounterPlugin({rootSelector:'#counter-2', step: 13});
+//////Poly
+const poly = new Mage({name: 'Полі',  xp: 2000, spells: ['уєє']});
+
+console.log(poly);
+poly.casst();
+poly.gainXp(500);
+
+//////Ajax
+const ajax = new Berserk({
+    name: 'Ajax',
+    xp: 3000,
+    weapon: 'axe',
+    warcry: 'waaaaaaaahh',
+});
+
+console.log(ajax);
+ajax.atack();
+ajax.gainXp(26);
+
+
+
+///Для співбесіди (прототипування)
+// console.log('mango.__proto__ === Warrior.prototype', mango.__proto__ === Warrior.prototype);
+// console.log('Object.getPrototypeOf(mango) === Warrior.prototype',Object.getPrototypeOf(mango) === Warrior.prototype);//більш правильний запис з точки зору звертання
+// console.log('Warrior.prototype.__proto__ === Hero.prototype',Warrior.prototype.__proto__ === Hero.prototype);
+
+// console.log('console.log(Hero.prototype);', Hero.prototype);
+
+// console.log('Hero.prototype.__proto__ === Object.prototype',Hero.prototype.__proto__ === Object.prototype);
