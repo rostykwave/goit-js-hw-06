@@ -10,13 +10,19 @@ const refs = {
 }
 
 function createBoxes(amount) { 
+  ////визначення кількості боксів,які зробити
   const divAmount = refs.input.valueAsNumber;
 
+  //////вихідні параметри боксів
   let increment = 10;
   let elWidth = 30 - increment;
   let elHeight = 30 - increment;
   
 
+  /////ініціація пустого масиву
+  const allElements = [];
+
+  /////Цикл, який введену кількість раз створить елемент і додасть його в масив
   for (let i = 0; i < divAmount; i++) {
     /////збільшення розміру при кожній ітерації
     elWidth += increment;
@@ -29,16 +35,17 @@ function createBoxes(amount) {
     newElement.style.width = `${elWidth}px`;
     newElement.style.height = `${elHeight}px`;
     newElement.style.backgroundColor = getRandomHexColor();
-  
-    /////додавання елементу
-    refs.output.append(newElement);
-    
+
+    ////додавння при кожній ітерації в масив
+    allElements.push(newElement);
+    /////додавання елементу по одному(не використовувавти)
+    // refs.output.append(newElement);
   }
 
+  /////додавання елементів (дестр. масиву)
+   refs.output.append(...allElements);
   
 }
-
-//////зробити одним кроком через масив чи об'єкт - деструктуризацією
 
 function destroyBoxes() {
   refs.output.innerHTML = '';
@@ -51,9 +58,6 @@ refs.create.addEventListener('click', createBoxes);
 refs.destroy.addEventListener('click', destroyBoxes);
 
 
-// console.log(refs.create);
-// console.log(refs.destroy);
-// console.log(refs.output);
-
 
 /////how to use amount createBoxes(amount) with callbacks
+////why do we need (amount) parameter?
