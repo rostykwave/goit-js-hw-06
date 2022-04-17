@@ -8,25 +8,44 @@ function onSubmit(event) {
     ////заборона перезавантаження сторінки
     event.preventDefault();
 
-    /////доступ до всього інпуту форми
-    const formData = new FormData(event.currentTarget);
+    //////Варіант 1 (через elements)
+    //додаткова змінна для зручності
+    const formElements = event.currentTarget.elements;
+    ///доступ до значень окремо кожного елемента
+    const email = formElements.email.value;
+    const password = formElements.password.value;
+    ///попередження про пусте поле
+    if (email === '' || password === '') {
+        return alert('всі поля повинні бути заповнені');
+    }
+    ///об'єкт зі всім інпутом
+    const formData = {
+        email,
+        password,
+    }
+    console.log(formData);
 
 
-    ////створення об'єкту для додавання інпуту
-    const elements = {};
-    
 
-    ////////перебір масиву всього інпуту
-    formData.forEach((value, key) => {
-        if (value ==='') {
-           return alert('всі поля повинні бути заповнені');
-        }; 
+    // ///Варіант 2 через клас FormData
+    // /// одномоментний доступ до всього інпуту форми
+    // const formDataRaw = new FormData(event.currentTarget);///посилання на сам DOM елемент
 
-        elements[key] = value;
-    }    
-    );
-    ///////логування об'єкту інпуту
-    console.log(elements);
+    //  //створення об'єкту для додавання інпуту
+    // const formData = {};
+
+    // //////перебір масиву всього інпуту
+    // formDataRaw.forEach((value, key) => {
+    //     if (value ==='') {
+    //        return alert('всі поля повинні бути заповнені');
+    //     };
+
+    //     formData[key] = value;
+    // }
+    // );
+    // /////логування об'єкту інпуту
+    // console.log(formData);
+
 
     ///очистка полів
     refs.form.reset();
@@ -34,10 +53,3 @@ function onSubmit(event) {
 
 ///////NB: метод .forEach не дозволяє передчасно перервати перебір масиву, для цього підійде for of/for/for in
 ////тому коли два пусті поля отримуємо два alert
-
-
-
-
-
-/////Elements для доступу до елементів форми????
-////переробити з відео події 33 хвилина

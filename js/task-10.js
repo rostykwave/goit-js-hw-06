@@ -61,3 +61,4 @@ refs.destroy.addEventListener('click', destroyBoxes);
 
 /////how to use amount createBoxes(amount) with callbacks
 ////why do we need (amount) parameter?
+////Can we do this in differrent way? not using for?
