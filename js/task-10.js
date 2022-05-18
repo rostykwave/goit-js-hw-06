@@ -23,7 +23,7 @@ function createBoxes(amount) {
   const allElements = [];
 
   /////Цикл, який введену кількість раз створить елемент і додасть його в масив
-  for (let i = 0; i < divAmount; i++) {
+  for (let i = 0; i < divAmount; i+=) {
     /////збільшення розміру при кожній ітерації
     elWidth += increment;
     elHeight += increment;

@@ -1,6 +1,6 @@
 const refs = {
-    decrementButton: document.querySelector('button[data-action="decrement"'),
-    valueOutput: document.querySelector('#value'),incrementButton: document.querySelector('button[data-action="increment"'),
+    decrementButton: document.querySelector('button[data-action="decrement"]'),
+    valueOutput: document.querySelector('#value'),incrementButton: document.querySelector('button[data-action="increment"]'),
 };
 
 

@@ -16,7 +16,7 @@ function onSubmit(event) {
     const password = formElements.password.value;
     ///попередження про пусте поле
     if (email === '' || password === '') {
-        return alert('всі поля повинні бути заповнені');
+        return alert('Всі поля повинні бути заповнені!');
     }
     ///об'єкт зі всім інпутом
     const formData = {

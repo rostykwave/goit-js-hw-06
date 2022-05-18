@@ -26,7 +26,7 @@ function inputValidation(element,add,remove) {
 function inputCheck() {
     console.log(`Введено ${this.value.length} символів`);
 
-    if (this.value.length > this.dataset.length || this.value.length ===0) {
+    if (this.value.length > this.dataset.length || this.value.length === 0) {
         return inputValidation(this,'invalid','valid');
     } 
     return inputValidation(this,'valid','invalid');

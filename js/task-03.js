@@ -22,9 +22,6 @@ const makeImagesGallery = image => {
 
 const makeImageList = images.map(makeImagesGallery).join('');
 
-console.log(makeImageList);
-
-
 
 const galleryListEL = document.querySelector('.gallery');
 

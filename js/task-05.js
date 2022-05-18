@@ -6,6 +6,12 @@ const refs = {
 refs.input.addEventListener('input', onInputChange);
 
 function onInputChange(event) {
-    refs.output.textContent = 'Anonymous';
-    refs.output.insertAdjacentHTML('beforeend', event.currentTarget.value);
+    
+    const inputText = event.currentTarget.value;
+
+    if (inputText === '') {
+        return refs.output.textContent = 'Anonymous';
+    }
+    
+    refs.output.textContent = inputText;
 };
